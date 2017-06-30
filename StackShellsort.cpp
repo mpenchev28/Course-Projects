@@ -5,7 +5,7 @@
 using namespace std;
 
 
-int br = 0; //брояч дължина на стек
+int br = 0; 
 bool flag2 = false;
 int n = 0;
 int br1 = 0;
@@ -67,40 +67,39 @@ int main() {
 	return 0;
 }
 
-elem *push(elem *st, int value) {				// вмъква елемент в стека
-	elem *top;				// временен указател към първия елемент (върха)
-	top = new elem;				// заделяме памет за новия елемент
-	top->key = value;				// присвояваме данните
-	top->next = st;				// насочваме 'следващия' към предишния първи
+elem *push(elem *st, int value) {				
+	elem *top;				
+	top = new elem;				
+	top->key = value;				
+	top->next = st;				
 	st = top;
 	return top;
 }
 elem *pop(elem *st, int &value) {
-	elem *top; // указател към върха на структурата на подаден стек
+	elem *top; 
 	value = st->key;
 	top = st;
 	st = st->next;
 	delete top;
 	return st;
 }
-void Get_from_file() { // Извличане данни от файл и добавяне в стек
+void Get_from_file() { 
 	int x;
 	ifstream inputFile;
 	inputFile.open("Input.txt");
 	while (!(inputFile.eof())) {
-		inputFile >> x; // записваме данните през променливата х и ги
-		stack = push(stack, x); // довавяме в стека с push(stack, x);
+		inputFile >> x; 
+		stack = push(stack, x); 
 		br++;
 	}
 	inputFile.close();
 }
-void Save_to_file(elem *st) { // Функция за запис на вече сортирания стек
+void Save_to_file(elem *st) { 
 	ofstream outputFile;
-	outputFile.open("Output.txt", ios::trunc); /*създаваме фаил или изчистваме съдържанието на
-											   вече създаден файл отворен за запис*/
+	outputFile.open("Output.txt", ios::trunc); 
 	while (st) {
-		outputFile << st->key << "\n"; // Записва стойността на върха на основния стек
-		st->next; // сочи предходния елемент преди върха(следващия надолу елемент)
+		outputFile << st->key << "\n"; 
+		st->next; 
 	}
 outputFile.close();
 }
@@ -124,17 +123,17 @@ void printStack() {
 }
 void stack_apart() {  
 	cout << "STACK APART" << endl;
-	int num;				// помощна променлива за запис на стойности в стек
+	int num;				
 	for (int i=0; i < (br/2); i++) {
-		stack = pop(stack, num); // извлича най-горния елемент на стек
-		s1 = push(s1, num); // поставя този елемент във временния стек temp
+		stack = pop(stack, num); 
+		s1 = push(s1, num); 
 		cout << "FOR NUM: " << num << endl;
 		num = 0;
 		br1++;
 	}
 	while (stack) {
-		stack = pop(stack, num); // пресипва остатъка от основния стек
-		s2 = push(s2, num); // във временния стек за преобръщане temp
+		stack = pop(stack, num); 
+		s2 = push(s2, num); 
 		cout << "WHILE NUM: " << num << endl;
 		num = 0;
 		br2++;
